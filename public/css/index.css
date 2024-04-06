@@ -1,0 +1,61 @@
+* {
+  background-color: black;
+  color: white;
+}
+
+hr {
+  width: 100%;
+}
+
+h3 {
+  text-align: center;
+}
+
+input {
+  background: white;
+  color: black;
+}
+
+button {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.products-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid white;
+}
+
+.products-form form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.products-form input {
+  margin-bottom: 5px;
+}
+
+#button-create {
+  background: #1da81d;
+}
+
+#button-delete {
+  background: #d51515;
+}
