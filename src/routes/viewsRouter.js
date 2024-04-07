@@ -1,10 +1,9 @@
 import { Router } from "express";
 import { productManagerDB } from "../dao/productManagerDB.js";
-import MessageManagerDB from "../dao/messageManagerDB.js"; // Adjust import statement
+import messageManagerDB from "../dao/messageManagerDB.js"; // Adjust import statement
 
 const router = Router();
 const productService = new productManagerDB();
-const messageService = new MessageManagerDB();
 
 router.get("/", async (req, res) => {
   res.render("index", {
@@ -22,9 +21,9 @@ router.get("/realtimeproducts", async (req, res) => {
   });
 });
 
-router.get("/messageService", async (req, res) => {
+router.get("/chat", async (req, res) => {
   try {
-    const messages = await messageService.getAllMessages();
+    const messages = await messageManagerDB.getAllMessages();
     res.render("messageService", { messages }); // Render the messageService view
   } catch (error) {
     console.error(error);

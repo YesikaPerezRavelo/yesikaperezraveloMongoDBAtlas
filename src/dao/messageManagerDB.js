@@ -10,7 +10,7 @@ class MessageManagerDB {
     }
   }
 
-  async createMessage(user, message) {
+  async insertMessage(user, message) {
     try {
       const newMessage = await MessageModel.create({ user, message });
       return newMessage.toObject();
@@ -21,4 +21,6 @@ class MessageManagerDB {
   }
 }
 
-export default MessageManagerDB;
+const messagemanager = new MessageManagerDB();
+
+export default messagemanager;
