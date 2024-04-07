@@ -19,8 +19,6 @@ class MessageManagerDB {
       throw new Error("Error creating new message");
     }
   }
-
-  // Add other methods for updating, deleting messages as needed
 }
 
 export default MessageManagerDB;
