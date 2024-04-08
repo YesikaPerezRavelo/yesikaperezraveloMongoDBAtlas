@@ -84,3 +84,45 @@ button {
   margin-top: 10px;
   font-family: "Montserrat", sans-serif;
 }
+
+body {
+  background-color: white;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+input {
+  width: 50%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  height: 2rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.boxMessages {
+  margin-left: 10px;
+  margin-top: 2rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.red {
+  color: red;
+}
+
+.black {
+  color: black;
+}

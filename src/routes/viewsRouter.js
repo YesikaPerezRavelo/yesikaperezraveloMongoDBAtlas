@@ -24,7 +24,11 @@ router.get("/realtimeproducts", async (req, res) => {
 router.get("/chat", async (req, res) => {
   try {
     const messages = await messageManagerDB.getAllMessages();
-    res.render("messageService", { messages }); // Render the messageService view
+    res.render("messageService", {
+      title: "Chat", // Set the title to "Chat"
+      style: "index.css", // Link to the index.css stylesheet
+      messages: messages, // Provide messages to the view
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
