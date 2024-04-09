@@ -1,4 +1,4 @@
-import cartModel from "./models/cartModel";
+import { cartModel } from "./models/cartModel.js";
 
 class cartManagerDB {
   async getAllCarts() {
@@ -32,6 +32,4 @@ class cartManagerDB {
   }
 }
 
-const cartmanager = new cartManagerDB();
-
-export default cartmanager;
+export default cartManagerDB;
