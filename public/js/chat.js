@@ -3,44 +3,54 @@ const socket = io();
 let user;
 let chatBox = document.querySelector("#chatBox");
 let messagesLogs = document.querySelector("#messagesLogs");
+let submitBtn = document.querySelector("#submitBtn");
 
-// Prompt user to identify themselves
-Swal.fire({
-  title: "Identify Yourself",
-  input: "text",
-  text: "Name or nickname",
-  imageUrl: "https://yesikaperezravelo.github.io/FitnessPlanYes/img/a.webp",
-  inputValidator: (value) => {
-    return !value && "You need to identify yourself to continue!";
-  },
-  allowOutsideClick: false,
-}).then((result) => {
-  user = result.value;
+// Function to handle the user identification
+function identifyUser() {
+  user = document.querySelector("#usernameInput").value.trim();
+  if (!user) {
+    alert("You need to identify yourself to continue!");
+    return;
+  }
   console.log(`Your username is ${user}`);
-
   socket.emit("userConnect", user);
+}
+
+// Function to handle message submission
+function sendMessage(message) {
+  console.log(`Message: ${message}`);
+  socket.emit("message", { user, message });
+}
+
+// Event listener for submit button click
+submitBtn.addEventListener("click", () => {
+  identifyUser(); // Identify user when submit button is clicked
+  let message = chatBox.value.trim();
+  if (message.length > 0) {
+    sendMessage(message);
+    chatBox.value = "";
+    Swal.fire({
+      title: "Message Sent!",
+      text: "Your message has been sent.",
+      icon: "success",
+      toast: true,
+      position: "top-right",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }
 });
 
 // Send message when Enter key is pressed
 chatBox.addEventListener("keypress", (e) => {
-  if (e.key === "Enter" && chatBox.value.trim().length > 0) {
-    console.log(`Message: ${chatBox.value}`);
-    socket.emit("message", {
-      user,
-      message: chatBox.value,
-    });
-    chatBox.value = "";
+  if (e.key === "Enter") {
+    e.preventDefault(); // Prevent line break in text area
+    let message = chatBox.value.trim();
+    if (message.length > 0) {
+      sendMessage(message);
+      chatBox.value = "";
+    }
   }
-});
-
-// Update messages log when new message received
-socket.on("messagesLogs", (data) => {
-  let messages = "";
-  console.log(data);
-  data.forEach((chat) => {
-    messages += `<strong>${chat.user}</strong>: ${chat.message} <br>`;
-  });
-  messagesLogs.innerHTML = messages;
 });
 
 // Notify when a new user joins

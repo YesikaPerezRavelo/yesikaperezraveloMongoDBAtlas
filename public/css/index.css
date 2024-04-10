@@ -99,7 +99,6 @@ h1 {
 }
 
 input {
-  width: 50%;
   margin-bottom: 10px;
   border-radius: 5px;
   height: 2rem;
@@ -116,7 +115,6 @@ input {
 .boxMessages {
   margin-left: 10px;
   margin-top: 2rem;
-  font-family: "Montserrat", sans-serif;
 }
 
 .red {
@@ -125,4 +123,60 @@ input {
 
 .black {
   color: black;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.boxMessages {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#messagesLogs {
+  overflow-y: scroll;
+  max-height: 200px;
+}
+
+.box {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto;
+  margin-top: 100px;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#submitContainer {
+  text-align: center;
+}
+
+#submitBtn {
+  padding: 10px 20px;
+  background-color: #d78383;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
