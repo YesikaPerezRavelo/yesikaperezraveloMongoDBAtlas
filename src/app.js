@@ -49,30 +49,3 @@ const httpServer = app.listen(PORT, () => {
 // Socket.io integration
 const io = new Server(httpServer);
 websocket(io);
-
-// Instantiate MessageManagerDB
-
-// Handle Socket.io events
-io.on("connection", (socket) => {
-  console.log("New user connected: ", socket.id);
-
-  socket.on("message", async (data) => {
-    console.log(`Message received from ${socket.id}: ${data.message}`);
-    // Handle message logic here
-    try {
-      await messagemanagerdb.insertMessage(data.user, data.message);
-      io.emit("messagesLogs", await messagemanagerdb.getAllMessages());
-    } catch (error) {
-      console.error("Error handling message:", error.message);
-    }
-  });
-
-  socket.on("userConnect", async (data) => {
-    try {
-      socket.emit("messagesLogs", await messagemanagerdb.getAllMessages());
-      socket.broadcast.emit("newUser", data);
-    } catch (error) {
-      console.error("Error handling user connection:", error.message);
-    }
-  });
-});

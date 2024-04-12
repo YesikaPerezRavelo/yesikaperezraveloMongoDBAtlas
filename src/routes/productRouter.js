@@ -2,6 +2,7 @@ import { Router } from "express";
 //import { productManagerFS } from '../dao/productManagerFS.js';
 import { productManagerDB } from "../dao/productManagerDB.js";
 import { uploader } from "../utils/multerUtil.js";
+import productModel from "../dao/models/productModel.js";
 
 const router = Router();
 //const ProductService = new productManagerFS('products.json');
@@ -14,21 +15,6 @@ router.get("/", async (req, res) => {
     status: "success",
     payload: result,
   });
-});
-
-router.get("/:pid", async (req, res) => {
-  try {
-    const result = await ProductService.getProductByID(req.params.pid);
-    res.send({
-      status: "success",
-      payload: result,
-    });
-  } catch (error) {
-    res.status(400).send({
-      status: "error",
-      message: error.message,
-    });
-  }
 });
 
 router.post("/", uploader.array("thumbnails", 3), async (req, res) => {
@@ -78,6 +64,44 @@ router.put("/:pid", uploader.array("thumbnails", 3), async (req, res) => {
 router.delete("/:pid", async (req, res) => {
   try {
     const result = await ProductService.deleteProduct(req.params.pid);
+    res.send({
+      status: "success",
+      payload: result,
+    });
+  } catch (error) {
+    res.status(400).send({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+
+router.get("/search", async (req, res) => {
+  try {
+    const { title } = req.query;
+    console.log(req.query);
+    let query = {};
+    if (title) query = { title };
+
+    const products = await productModel.find(query).explain("executionStats");
+
+    res.send({
+      status: "success",
+      payload: products,
+    });
+  } catch (error) {
+    res.status(500).send({
+      status: "error",
+      payload: {
+        message: error.message,
+      },
+    });
+  }
+});
+
+router.get("/:pid", async (req, res) => {
+  try {
+    const result = await ProductService.getProductByID(req.params.pid);
     res.send({
       status: "success",
       payload: result,
