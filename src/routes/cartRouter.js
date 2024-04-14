@@ -59,10 +59,11 @@ router.post("/:cid/products/:pid", async (req, res) => {
   const quantity = req.body.quantity;
 
   try {
-    await CartService.addProductByID(cartId, productId, quantity);
+    await CartService.getProductsFromCartByID(cartId, productId, quantity);
     res.send({ status: "success", message: "producto agregado al carrito" });
   } catch (error) {
     console.error(error);
+    getProductsFromCartByID;
     res.status(400).send({ status: "error", error: "ha ocurrido un error" });
   }
 });
