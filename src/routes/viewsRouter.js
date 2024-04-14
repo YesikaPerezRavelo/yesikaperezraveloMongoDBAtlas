@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { productManagerDB } from "../dao/productManagerDB.js";
 import messageManagerDB from "../dao/messageManagerDB.js"; // Adjust import statement
+import cartManagerDB from "../dao/cartManagerDB.js";
 
 const router = Router();
 const productService = new productManagerDB();
+const cartService = new cartManagerDB();
 
 router.get("/", async (req, res) => {
   res.render("index", {
@@ -25,9 +27,23 @@ router.get("/chat", async (req, res) => {
   try {
     const messages = await messageManagerDB.getAllMessages();
     res.render("messageService", {
-      title: "Chat", // Set the title to "Chat"
-      style: "index.css", // Link to the index.css stylesheet
-      messages: messages, // Provide messages to the view
+      title: "Chat",
+      style: "index.css",
+      messages: messages,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+router.get("/:cid", async (req, res) => {
+  try {
+    const cart = await cartService.getProductsFromCartByID();
+    res.render("cart", {
+      title: "Cart",
+      style: "index.css",
+      products: cart.products,
     });
   } catch (error) {
     console.error(error);

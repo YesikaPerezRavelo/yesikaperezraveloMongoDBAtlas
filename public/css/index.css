@@ -32,8 +32,9 @@ button {
 
 .products-box {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
+  width: 1000px;
 }
 
 .products-form {
@@ -50,7 +51,9 @@ button {
   border-radius: 5px;
   padding: 20px;
   font-family: "Montserrat", sans-serif;
-  padding-right: 2rem;
+  margin: 10px;
+  flex: 1 1 calc(25% - 20px);
+  max-width: calc(50% - 20px);
 }
 
 .products-form form {
