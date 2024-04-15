@@ -1,13 +1,7 @@
 import { Router } from "express";
-//import { productManagerFS } from "../dao/productManagerFS.js";
-//import { cartManagerFS } from "../dao/cartManagerFS.js";
-
 import cartManagerDB from "../dao/cartManagerDB.js";
 
 const router = Router();
-//const ProductService = new productManagerFS("products.json");
-
-//const CartService = new cartManagerFS("carts.json", ProductService);
 const CartService = new cartManagerDB();
 
 router.get("/:cid", async (req, res) => {
@@ -30,7 +24,7 @@ router.post("/", async (req, res) => {
     const result = await CartService.createCart();
     res.send({
       status: "success",
-      message: "Your cart has been successfully been created",
+      message: "Your cart has been successfully created",
       payload: result,
     });
   } catch (error) {
@@ -59,12 +53,19 @@ router.post("/:cid/products/:pid", async (req, res) => {
   const quantity = req.body.quantity;
 
   try {
-    await CartService.getProductsFromCartByID(cartId, productId, quantity);
-    res.send({ status: "success", message: "producto agregado al carrito" });
+    await CartService.addProductToCart(cartId, productId, quantity);
+    res.send({
+      status: "success",
+      message: "Product has been added successfully",
+    });
   } catch (error) {
     console.error(error);
-    getProductsFromCartByID;
-    res.status(400).send({ status: "error", error: "ha ocurrido un error" });
+    res
+      .status(400)
+      .send({
+        status: "error",
+        error: "There was an error adding the product to the cart",
+      });
   }
 });
 
@@ -85,22 +86,28 @@ router.put("/:cid/products/:pid", async (req, res) => {
   const quantity = req.body.quantity;
   try {
     await CartService.updateProductQuantity(cartId, productId, quantity);
-    res.send({ status: "success", message: "quantity changed", cart });
+    res.send({ status: "success", message: "Quantity changed" });
   } catch (error) {
     console.error(error);
+    res
+      .status(400)
+      .send({
+        status: "error",
+        error: "There was an error updating the product quantity",
+      });
   }
 });
 
 router.delete("/:cid", async (req, res) => {
   const cartId = req.params.cid;
-
   try {
     await CartService.deleteAllProductsFromCart(cartId);
     res.send("Cart has been deleted");
   } catch (error) {
-    return res
+    console.error(error);
+    res
       .status(400)
-      .send({ status: "error", error: "there is an error" });
+      .send({ status: "error", error: "There was an error deleting the cart" });
   }
 });
 
@@ -109,9 +116,15 @@ router.delete("/:cid/products/:pid", async (req, res) => {
   const productId = req.params.pid;
   try {
     await CartService.deleteProductFromCart(cartId, productId);
-    res.send("Product " + productId + " has been deleted");
+    res.send(`Product ${productId} has been deleted from the cart`);
   } catch (error) {
     console.error(error);
+    res
+      .status(400)
+      .send({
+        status: "error",
+        error: "There was an error deleting the product from the cart",
+      });
   }
 });
 

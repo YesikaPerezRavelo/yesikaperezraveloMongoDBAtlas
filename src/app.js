@@ -105,6 +105,7 @@ app.get("/", (req, res) => {
         <button class="button" onclick="window.location.href='/products'">List of classes</button>
         <button class="button" onclick="window.location.href='/products/realtimeproducts'">Coach post your class</button>
         <button class="button" onclick="window.location.href='/products/chat'">Send us a message</button>
+        <button class="button" onclick="window.location.href='/products/661c5c913dd9a9b96a0ca207'">View Cart</button>
       </div>
     </div>
     

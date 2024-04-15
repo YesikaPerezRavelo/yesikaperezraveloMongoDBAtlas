@@ -38,8 +38,9 @@ router.get("/chat", async (req, res) => {
 });
 
 router.get("/:cid", async (req, res) => {
+  const cartId = req.params.cid;
   try {
-    const cart = await cartService.getProductsFromCartByID();
+    const cart = await cartService.getProductsFromCartByID(cartId);
     res.render("cart", {
       title: "Cart",
       style: "index.css",
