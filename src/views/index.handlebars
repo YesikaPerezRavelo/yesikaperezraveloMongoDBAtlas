@@ -11,4 +11,24 @@
       </div>
     {{/each}}
   </div>
+        <div class="Prev">
+  {{#if hasPrevPage}}
+  <a href="{{prevLink}}" class="Prev">
+    last
+  </a>
+  {{else}}
+    <a class="">
+    last
+  </a>
+  {{/if}}
+
+  {{#if hasNextPage}}
+  <a href="{{nextLink}}" class="next">
+    next
+  </a>
+  {{else}}
+    <a class="next">
+    next
+  </a>
+  {{/if}}
 </div>
