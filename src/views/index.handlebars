@@ -1,7 +1,7 @@
 <div class="box">
   <h1>Productos</h1>
   <div class="products-box">
-    {{#each products}}
+    {{#each products.docs}}
       <div class="product-card">
         <h3>{{this.title}}</h3>
         <hr />
@@ -12,22 +12,14 @@
     {{/each}}
   </div>
         <div class="Prev">
-  {{#if hasPrevPage}}
+  {{#if products.hasPrevPage}}
   <a href="{{prevLink}}" class="Prev">
-    last
-  </a>
-  {{else}}
-    <a class="">
     last
   </a>
   {{/if}}
 
-  {{#if hasNextPage}}
+  {{#if products.hasNextPage}}
   <a href="{{nextLink}}" class="next">
-    next
-  </a>
-  {{else}}
-    <a class="next">
     next
   </a>
   {{/if}}

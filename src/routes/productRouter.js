@@ -17,6 +17,11 @@ router.get("/", async (req, res) => {
       query,
       sort
     );
+    res.send({
+      status: "success",
+      payload: result,
+    });
+    /*
     res.render("products", {
       layout: "default",
       style: "index.css",
@@ -35,8 +40,13 @@ router.get("/", async (req, res) => {
         ? `http://localhost:8080/products?page=${result.nextPage}`
         : null,
     });
+    */
   } catch (error) {
     console.error(error);
+    res.status(500).send({
+      status: "error",
+      message: error.message,
+    });
   }
 });
 

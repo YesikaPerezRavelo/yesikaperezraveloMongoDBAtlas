@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
   res.render("index", {
     title: "Productos",
     style: "index.css",
-    products: await productService.getAllProducts(),
+    products: await productService.getAllProducts(5, 1),
   });
 });
 
