@@ -7,9 +7,10 @@ export default (io) => {
   io.on("connection", (socket) => {
     socket.on("createProduct", async (data) => {
       try {
+        console.log("DATA CREATE => ", data);
         await ProductService.createProduct(data);
         const products = await ProductService.getAllProducts();
-        socket.emit("publishProducts", products);
+        socket.emit("publishProducts", products.docs);
       } catch (error) {
         socket.emit("statusError", error.message);
       }

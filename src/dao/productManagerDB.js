@@ -6,7 +6,7 @@ class productManagerDB {
       //return await productModel.find().lean();
       return await productModel.paginate(query ?? {}, {
         page: page ?? 1,
-        limit: limit ?? 10,
+        limit: limit ?? 100,
         sort,
         lean: true,
       });
