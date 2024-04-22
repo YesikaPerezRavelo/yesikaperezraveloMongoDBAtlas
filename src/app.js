@@ -120,7 +120,7 @@ app.get("/", (req, res) => {
 </head>
 <body>
   <div class="container">
-    <h1>Welcome to our clases online</h1>
+    <h1>Welcome to our classes online</h1>
     <p>Sign up and post your class or find a class that suits you </p>
     <div>
       <!-- Login form -->

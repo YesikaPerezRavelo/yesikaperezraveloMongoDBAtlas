@@ -1,0 +1,31 @@
+<div class="profile-container">
+  <div class="profile-details">
+    <div class="user-info">
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/productyesfitness.appspot.com/o/user.png?alt=media&token=827ecd04-6291-4789-a985-856e9d3935b5"
+        alt="User Image"
+      />
+      <h1>{{user.firstName}} {{user.lastName}}</h1>
+      <p>Email: {{user.email}}</p>
+      <div class="additional-info">
+        <h2>Age: {{user.age}}</h2>
+        <h2>Role: {{user.role}}</h2>
+      </div>
+    </div>
+  </div>
+  <div class="profile-actions">
+    <div class="action-buttons">
+      <a href="/products/" class="class-link">Check Available Classes</a>
+      <a href="/products/realtimeproducts" class="post-class-link">Post a Class</a>
+      <a href="/products/chat" class="help">Help</a>
+      {{#if cart.products.length}}
+        <a href="/api/carts/{{cart._id}}" class="cart-link">View Cart</a>
+      {{/if}}
+      <form id="logout-form" action="/api/session/logout" method="POST">
+        <button type="submit" class="logout-button">Logout</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/user.js"></script>
