@@ -8,23 +8,19 @@
         <p>Categoria: {{this.category}}</p>
         <p>Descripción: {{this.description}}</p>
         <p>Precio: $ {{this.price}}</p>
+        <button
+          onclick="addToCart('{{this._id}}')"
+          class="add-to-cart-button"
+        >Add to Cart</button>
       </div>
     {{/each}}
   </div>
-        <div class="paginate">
-  {{#if products.prevPage}}
-  <a href="/products?page={{products.prevPage}}" class="prev">
-    previous
-  </a>
-  {{/if}}
-
-  {{#if products.nextPage}}
-  <a href="/products?page={{products.nextPage}}" class="next">
-    next
-  </a>
-  {{/if}}
+  <div class="paginate">
+    {{#if products.prevPage}}
+      <a href="/products?page={{products.prevPage}}" class="prev">previous</a>
+    {{/if}}
+    {{#if products.nextPage}}
+      <a href="/products?page={{products.nextPage}}" class="next">next</a>
+    {{/if}}
+  </div>
 </div>
-
-<script>
-  console.log(products)
-</script>

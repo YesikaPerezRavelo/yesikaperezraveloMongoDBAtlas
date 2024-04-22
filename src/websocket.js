@@ -1,6 +1,9 @@
 //import { productManagerFS } from "./dao/productManagerFS.js";
 //const ProductService = new productManagerFS('products.json');
 import { productManagerDB } from "./dao/productManagerDB.js";
+import userManagerDB from "./dao/userManagerDB.js";
+
+const UserManager = new userManagerDB();
 const ProductService = new productManagerDB();
 
 export default (io) => {
@@ -43,6 +46,29 @@ export default (io) => {
       } catch (error) {
         console.error("Error handling user connection:", error.message);
       }
+    });
+
+    socket.on("registerUser", async (userData) => {
+      try {
+        await UserManager.registerUser(userData);
+        socket.emit("registrationSuccess", "User registered successfully!");
+      } catch (error) {
+        socket.emit("registrationError", error.message);
+      }
+    });
+
+    socket.on("loginUser", async (loginData) => {
+      try {
+        const user = await UserManager.authenticateUser(loginData);
+        socket.emit("loginSuccess", user);
+      } catch (error) {
+        socket.emit("loginError", error.message);
+      }
+    });
+
+    socket.on("logoutUser", async () => {
+      try {
+      } catch (error) {}
     });
   });
 };

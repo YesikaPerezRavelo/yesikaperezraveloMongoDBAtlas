@@ -60,12 +60,10 @@ router.post("/:cid/products/:pid", async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res
-      .status(400)
-      .send({
-        status: "error",
-        error: "There was an error adding the product to the cart",
-      });
+    res.status(400).send({
+      status: "error",
+      error: "There was an error adding the product to the cart",
+    });
   }
 });
 
@@ -89,12 +87,10 @@ router.put("/:cid/products/:pid", async (req, res) => {
     res.send({ status: "success", message: "Quantity changed" });
   } catch (error) {
     console.error(error);
-    res
-      .status(400)
-      .send({
-        status: "error",
-        error: "There was an error updating the product quantity",
-      });
+    res.status(400).send({
+      status: "error",
+      error: "There was an error updating the product quantity",
+    });
   }
 });
 
@@ -119,12 +115,10 @@ router.delete("/:cid/products/:pid", async (req, res) => {
     res.send(`Product ${productId} has been deleted from the cart`);
   } catch (error) {
     console.error(error);
-    res
-      .status(400)
-      .send({
-        status: "error",
-        error: "There was an error deleting the product from the cart",
-      });
+    res.status(400).send({
+      status: "error",
+      error: "There was an error deleting the product from the cart",
+    });
   }
 });
 

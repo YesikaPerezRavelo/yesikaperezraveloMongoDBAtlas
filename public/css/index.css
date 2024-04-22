@@ -321,3 +321,17 @@ input[type="text"] {
   text-align: center;
   width: 5rem;
 }
+
+.add-to-cart-button {
+  background-color: #d78383;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+}
+
+.add-to-cart-button:hover {
+  background-color: #a54242;
+}
