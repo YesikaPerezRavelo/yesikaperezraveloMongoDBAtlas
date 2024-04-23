@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
     const cart = await cartManagerService.addProductToCart(response._id);
 
     await userManagerService.updateUser(response._id, cart._id);
-    res.redirect("/");
+    res.redirect("/user");
   } catch (error) {
     res.redirect("/register");
   }
@@ -46,7 +46,7 @@ router.post("/login", async (req, res) => {
     }
 
     req.session.user = user;
-    res.redirect("/");
+    res.redirect("/user");
   } catch (error) {
     console.error("Error during login:", error);
     req.session.failLogin = true;

@@ -14,19 +14,20 @@ router.get("/login", async (req, res) => {
   } else {
     res.render("login", {
       title: "YesFitness | Login",
-      script: "user.js",
       style: "index.css",
       failLogin: req.session.failLogin ?? false,
     });
   }
 });
 
-router.get("/register", async (req, res) => {
+router.get("/register", (req, res) => {
   if (req.session.user) {
     res.redirect("/user");
   }
   res.render("register", {
     title: "YesFitness | Register",
+    style: "index.css",
+    failRegister: req.session.failRegister ?? false,
   });
 });
 
@@ -40,7 +41,7 @@ router.get("/user", auth, async (req, res) => {
   });
 });
 
-router.get("/", async (req, res) => {
+router.get("/products", async (req, res) => {
   let { limit = 5, page = 1 } = req.query;
 
   res.render("index", {
