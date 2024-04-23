@@ -1,15 +1,17 @@
 <div class="container">
   <h1>Welcome to our classes online</h1>
-  <p>Sign up and post your class or find a class that suits you </p>
   <div>
+    <p class="description">Sign up and post your class or find a class that
+      suits you
+    </p>
     <!-- Login form -->
     <form class="box products-form" method="post" action="/api/sessions/login">
       <label for="email">Email</label>
       <input class="input" type="email" name="email" id="email" />
       <label for="password">Password</label>
       <input class="input" type="password" name="password" id="password" />
-      <button class="button" type="submit">Login</button>
+      <button class="submit" type="submit">Login</button>
+      <a class="register" href="/register" target="_self">Register</a>
     </form>
-    <span><a href="/register" target="_self">Register</a></span>
   </div>
 </div>

@@ -8,6 +8,10 @@ const router = Router();
 const productService = new productManagerDB();
 const cartService = new cartManagerDB();
 
+router.get("/favicon.ico", (req, res) => {
+  res.status(204);
+});
+
 router.get("/login", async (req, res) => {
   if (req.session.user) {
     res.redirect("/user");
