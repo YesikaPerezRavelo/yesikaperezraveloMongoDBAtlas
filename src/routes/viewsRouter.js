@@ -60,7 +60,7 @@ router.get("/user", auth, async (req, res) => {
       title: "YesFitness | Usuario",
       style: "index.css",
       user: req.session.user,
-      cart: user.cart.products,
+      cart: user.cart?.products || [], // <----- Acá el cambio
     });
   } catch (error) {
     console.error(error);

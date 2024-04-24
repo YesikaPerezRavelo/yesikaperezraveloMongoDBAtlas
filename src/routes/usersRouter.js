@@ -20,7 +20,7 @@ router.post("/register", async (req, res) => {
   const user = req.body;
   try {
     const response = await userManagerService.registerUser(user);
-    const cart = await cartManagerService.addProductToCart(response._id);
+    const cart = await cartManagerService.createCart();
 
     await userManagerService.updateUser(response._id, cart._id);
     res.redirect("/user");
@@ -54,7 +54,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.session.destroy((error) => {
     res.redirect("/login");
   });

@@ -1,8 +1,10 @@
 import { Router } from "express";
 import cartManagerDB from "../dao/cartManagerDB.js";
+import userManagerDB from "../dao/userManagerDB.js";
 
 const router = Router();
 const CartService = new cartManagerDB();
+const userService = new userManagerDB();
 
 router.get("/:cid", async (req, res) => {
   try {
@@ -32,6 +34,18 @@ router.post("/", async (req, res) => {
       status: "error",
       message: error.message,
     });
+  }
+});
+
+router.post("/register", async (req, res) => {
+  const user = req.body;
+  try {
+    const response = await userService.registerUser(user);
+    const cart = await cartService.createCart();
+    await userService.updateUser(response._id, { cart: cart._id });
+    res.redirect("/user");
+  } catch (error) {
+    res.redirect("/register");
   }
 });
 
