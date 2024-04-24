@@ -50,58 +50,9 @@ app.use(
 );
 
 //Hello
-app.get("/", (req, res) => {
-  res.send(`<!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-      <title>Welcome Home Page</title>
-      <style>
-          body, html {
-              height: 100%;
-              margin: 0;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              font-family: "Montserrat", sans-serif;
-          }
-          h1 {
-              margin-top: 20px;
-          }
-          img {
-              max-width: 100%;
-              max-height: 70%;
-              display: block;
-              margin: auto;
-          }
-          .button {
-              margin-top: 20px;
-              padding: 10px 20px;
-              background-color: #d78383;
-              color: white;
-              border: none;
-              border-radius: 5px;
-              cursor: pointer;
-              text-decoration: none;
-              margin-bottom: 2rem;
-          }
-      </style>
-  </head>
-  <body>
-      <h1>Welcome Home Page</h1>
-      <h3>Find or Teach your class</h3>
-      <img src="https://firebasestorage.googleapis.com/v0/b/productyesfitness.appspot.com/o/portada.jpg?alt=media&token=6e794bcc-7486-4bef-8337-b4480b66383f" alt="Welcome Image">
-      <a href="http://localhost:8080/login" class="button">Check it out</a>
-  </body>
-  </html>
-  
-
-
-  `);
-});
+// app.get("/", (req, res) => {
+//   res.send();
+// });
 
 // Routers
 app.use("/api/session", usersRouter);

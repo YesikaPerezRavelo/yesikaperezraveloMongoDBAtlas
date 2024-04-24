@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import mongoosePaginate from "mongoose-paginate-v2";
 
 const usersCollection = "users";
 
@@ -32,7 +31,5 @@ const usersSchema = new mongoose.Schema({
     ref: "carts",
   },
 });
-
-usersSchema.plugin(mongoosePaginate);
 
 export const userModel = mongoose.model(usersCollection, usersSchema);
