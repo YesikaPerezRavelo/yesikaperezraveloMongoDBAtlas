@@ -60,7 +60,7 @@ router.get("/user", auth, async (req, res) => {
       title: "YesFitness | Usuario",
       style: "index.css",
       user: req.session.user,
-      cart: user.cart?.products || [], // <----- Acá el cambio
+      cart: user.cart?.products || [],
     });
   } catch (error) {
     console.error(error);
@@ -71,7 +71,7 @@ router.get("/user", auth, async (req, res) => {
 router.get("/products", async (req, res) => {
   let { limit = 5, page = 1 } = req.query;
 
-  res.render("index", {
+  res.render("products", {
     title: "Productos",
     style: "index.css",
     products: await productService.getAllProducts(limit, page),
